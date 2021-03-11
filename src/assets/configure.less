@@ -1,0 +1,81 @@
+.filtering_item {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.upper_limit {
+  .el-input {
+    width: 96%;
+  }
+  .action {
+    .el-form-item__label {
+      width: 97px !important;
+    }
+    .el-form-item__content {
+      margin-left: 97px !important;
+    }
+  }
+}
+.form_line {
+  width: 33%;
+  .an_or {
+    display: flex;
+    flex-direction: column;
+    margin-left: 5px;
+    /deep/.el-radio__label {
+      padding-left: 5px;
+    }
+  }
+}
+.template {
+  width: 50%;
+  /deep/.el-form-item__content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  /deep/.el-input__inner {
+    height: 32px !important;
+    line-height: 32px !important;
+  }
+  .el-button {
+    margin-left: 4px;
+  }
+}
+.del_temp {
+  width: 30px;
+  text-align: center;
+}
+.temp {
+  padding-right: 8px;
+}
+.row_item {
+  /deep/.el-form-item__content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    .interval {
+      margin: 0 5px;
+    }
+    .el-checkbox {
+      margin-left: 5px;
+      .el-checkbox__label {
+        padding-left: 5px;
+      }
+    }
+  }
+}
+.action_item {
+  width: 60%;
+  /deep/.el-form-item__label {
+    width: 110px !important;
+  }
+}
+.btn_form_item {
+  float: right;
+}
+.no_label {
+  /deep/.el-form-item__content {
+    margin-left: 20px !important;
+  }
+}
