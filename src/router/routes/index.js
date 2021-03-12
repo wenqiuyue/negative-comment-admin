@@ -53,7 +53,7 @@ export default [
       {
         path: '/reviews',
         name: 'reviews',
-        meta:{title:'Reviews'},
+        meta:{title:'Complaints'},
         component: () => import('../../views/reviews'),
       },
       //验证

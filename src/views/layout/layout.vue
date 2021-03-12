@@ -35,7 +35,7 @@
               value="icon-pinglun"
               :size="1.2"
             ></svg-icon>
-            <span slot="title">Reviews</span>
+            <span slot="title">Complaints</span>
           </el-menu-item>
           <el-menu-item index="/setting" class="menu_item">
             <svg-icon

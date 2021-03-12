@@ -13,31 +13,35 @@
     <div class="home_main" v-if="comData">
       <el-row :gutter="8" class="row">
         <el-col :span="12" :xs="24">
-          <div class="card">
-            <div class="card_title">
-              <div class="card_title_left">
-                <span>Overall performance</span>
-                <el-tooltip class="item" effect="dark"  placement="top">
-                  <div slot="content" style="width:210px;word-break:break-all">Get an overview of your customer satisfaction. Your rating and score are current and not based on the selected time frame. The information is also displayed on your public Trustpilot profile page.</div>
-                  <i class="el-icon-info"></i>
-                </el-tooltip>
+        <div class="card">
+              <div class="p_m_i_top">
+                <el-image
+                  src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"
+                  fit="contain">
+                  <div slot="error" class="error_img_tips">
+                    Failed to load 
+                  </div>
+                </el-image>
+                <div class="p_m_i_top_right">
+                  <h2>FaxDroid</h2>
+                  <h5><a href="#" target="_blank">https://faxdroid.com</a>  •  5 Complaints</h5>
+              </div>
+              </div>
+              <div class="p_m_i_bottom">
+                <div class="p_m_i_b_tablt">
+                  <div class="main_score">
+                    <p class="score">0 <span>/ 0</span></p>
+                    <p class="score_text">Untrust Rate</p>
+                  </div>
+                  <div class="table_score">
+                    <div class="table_score_item" v-for="(tag,index) in 5" :key="index">
+                      <p>100%</p>
+                      <p>poor</p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="card_score">
-              <h5>Great</h5>
-              <rate
-                class="c_rate"
-                :value="comData.overallPerformance.trustscore"
-                :isDisabled="true"
-              >
-              </rate>
-              <div class="reviews_num">Based on <strong>{{comData.overallPerformance.total}}</strong> reviews</div>
-            </div>
-            <div class="trust_score">
-              <div>TRUSTSCORE</div>
-              <div><strong>{{comData.overallPerformance.trustscore}}</strong> out of 5</div>
-            </div>
-          </div>
         </el-col>
         <el-col :span="12" :xs="24">
           <div class="card">
@@ -45,28 +49,24 @@
               <div class="card_title_left">
                 <span>Engage</span>
                 <el-tooltip class="item" effect="dark"  placement="top">
-                  <div slot="content" style="width:210px;word-break:break-all">See snippets of your recent reviews regardless of the selected time frame. You can click through to read the full reviews, reply, share, and showcase your great customer service.</div>
+                  <div slot="content" style="width:210px;word-break:break-all">See snippets of your recent complaints regardless of the selected time frame. You can click through to read the full complaints, reply, share, and showcase your great customer complaints.</div>
                   <i class="el-icon-info"></i>
                 </el-tooltip>
               </div>
               <div class="card_title_right" @click="$router.push('/reviews')">
-                Service Reviews
+                Service complaints
               </div>
             </div>
-            <p class="eng_reviews">Your {{comData.engage.length}} latest reviews</p>
+            <p class="eng_reviews">Your {{comData.engage.length}} latest complaints</p>
             <div class="reviews_list">
               <div class="reviews_item" v-for="(item,index) in comData.engage" :key="index" @click="handleSeeReview(item.id)">
                 <span class="reviews_item_l">"</span>
                 <div class="reviews_item_r">
                   <div>{{item.content}}</div>
                   <div>
-                    <rate
-                      class="c_rate"
-                      :value="item.rank"
-                      :isDisabled="true"
-                    >
-                    </rate>
-                    <span>By {{item.name}}, {{formatDate(item.time)}}</span>
+                    <el-tag size="mini">poor</el-tag>
+                    <el-tag size="mini">bad</el-tag>
+                    <span class="r_i_r_user">By {{item.name}}, {{formatDate(item.time)}}</span>
                   </div>
                 </div>
               </div>
@@ -79,21 +79,21 @@
           <div class="card">
             <div class="card_title">
               <div class="card_title_left">
-                <span>Your reviews</span>
+                <span>Your complaints</span>
                 <el-tooltip class="item" effect="dark" placement="top">
-                  <div slot="content" style="width:210px;word-break:break-all">Keep track of your reviews alongside your star distribution. Trustpilot verifies that a review is genuine if we can connect it to an invitation sent through Trustpilot Business.</div>
+                  <div slot="content" style="width:210px;word-break:break-all">Keep track of your complaints. {{site.siteName}} verifies that a complaints is genuine if we can connect it to an invitation sent through {{site.siteName}} Business.</div>
                   <i class="el-icon-info"></i>
                 </el-tooltip>
               </div>
             </div>
             <div class="reviews">
               <div class="reviews_l" v-if="false">
-                <p>No reviews to show for this time frame.</p>
+                <p>No complaints to show for this time frame.</p>
                 <p>Try broadening your search</p>
               </div>
               <div class="reviews_l_card_list" v-else>
                 <div class="reviews_l_card">
-                  <div class="r_l_c_title">TOTAL REVIEWS</div>
+                  <div class="r_l_c_title">TOTAL COMPLAINTS</div>
                   <h5>{{comData.yourReviews.totalReviews.total}}</h5>
                   <i class="el-icon-caret-bottom"></i> <span class="dropdown_txt">{{comData.yourReviews.totalReviews.compare}}</span>
                   <!-- <el-dropdown trigger="click">
@@ -113,33 +113,33 @@
                 </div>
               </div>
               <div class="reviews_r">
-                <p>STAR DISTRIBUTION</p>
+                <p>TAGS DISTRIBUTION</p>
                 <div class="reviews_star_list">
                   <div v-for="(item,index) in comData.barDistributton" :key="index">
                     <div class="star_item" v-if="item.star==5">
-                      <span>5 stars</span>
+                      <span>poor</span>
                       <el-progress :text-inside="true" :stroke-width="26" :percentage="item.ratio" color="#00B67A"></el-progress>
-                      <span>{{item.amount}} Reviews</span>
+                      <span>{{item.amount}} complaints</span>
                     </div>
                     <div class="star_item" v-else-if="item.star==4">
-                      <span>4 stars</span>
+                      <span>poor</span>
                       <el-progress :text-inside="true" :stroke-width="26" :percentage="item.ratio" color="#73CF11"></el-progress>
-                      <span>{{item.amount}} Reviews</span>
+                      <span>{{item.amount}} complaints</span>
                     </div>
                     <div class="star_item" v-else-if="item.star==3">
-                      <span>3 stars</span>
+                      <span>poor</span>
                       <el-progress :text-inside="true" :stroke-width="26" :percentage="item.ratio" color="#FFCE00"></el-progress>
-                      <span>{{item.amount}} Reviews</span>
+                      <span>{{item.amount}} complaints</span>
                     </div>
                     <div class="star_item" v-else-if="item.star==2">
-                      <span>2 stars</span>
+                      <span>poor</span>
                       <el-progress :text-inside="true" :stroke-width="26" :percentage="item.ratio" color="#FF8622"></el-progress>
-                      <span>{{item.amount}} Reviews</span>
+                      <span>{{item.amount}} complaints</span>
                     </div>
                     <div class="star_item" v-else-if="item.star==1">
-                      <span>1 stars</span>
+                      <span>poor</span>
                       <el-progress :text-inside="true" :stroke-width="26" :percentage="20" color="#FF3722"></el-progress>
-                      <span>{{item.amount}} Reviews</span>
+                      <span>{{item.amount}} complaints</span>
                     </div>
                   </div>
                 </div>
@@ -162,6 +162,11 @@ export default {
       datePicker:[], //时间筛选
       comData:null, //首页数据
       loading:false
+    }
+  },
+  computed:{
+    site(){
+      return this.$store.state.siteInfo;
     }
   },
   mounted(){
@@ -250,39 +255,6 @@ export default {
             }
           }
         }
-        .card_score{
-          h5{
-            font-weight:normal;
-            font-size: 22px;
-            color: #454554;
-            margin: 10px 0;
-          }
-          .c_rate{
-            height: 38px;
-            /deep/.icon-pingfendengjiRating4{
-              font-size: 34px;
-            }
-          }
-          .reviews_num{
-            font-size: 13px;
-            color: #6F6F87;
-          }
-        }
-        .trust_score{
-          border: 1px solid #DCDCE6;
-          margin-top: 27px;
-          padding: 23px 17px 21px;
-          border-radius: 5px;
-          div:first-child{
-            font-size: 14px;
-            color: #6F6F87;
-          }
-          div:last-child{
-            color: #454554;
-            font-size: 18px;
-            margin-top: 5px;
-          }
-        }
         .eng_reviews{
           margin: 0;
           font-size: 13px;
@@ -319,16 +291,12 @@ export default {
                 display: flex;
                 flex-direction: row;
                 align-items: center;
-                span{
+                .el-tag{
+                  margin-right: 5px;
+                }
+                .r_i_r_user{
                   font-size: 13px;
                   color: #9A9AB5;
-                  margin-left: 5px;
-                }
-                .c_rate{
-                  line-height: 20px;
-                  /deep/.el-rate__icon{
-                    margin-right: 3px;
-                  }
                 }
               }
             }
@@ -405,6 +373,92 @@ export default {
                   font-size: 14px;
                   color: #6F6F87;
                 }
+              }
+            }
+          }
+        }
+        .p_m_i_top{
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          .el-image{
+            width: 102px;
+            height: 102px;
+            border-radius: 10px;
+            box-shadow: 0 1px 3px 0 rgba(0,0,0,.1);
+            padding: 5px;
+            margin-right: 20px;
+            flex-shrink: 0;
+          }
+          .p_m_i_top_right{
+            h2{
+              color: #0b143e;
+              font-size: 20px;
+              line-height: 32px;
+              text-overflow: ellipsis;
+              -webkit-line-clamp: 2;
+              overflow: hidden;
+              margin: 10px 0;
+            }
+            h5{
+              margin: 10px 0;
+              font-weight:normal;
+              color: #6d728b;
+              a{
+                color: #0084d6;
+                font-size: 15px;
+                text-decoration: none;
+              }
+            }
+          }
+        }
+        .p_m_i_bottom{
+          margin-top: 15px;
+          .p_m_i_b_tablt{
+            border: 1px solid #e4ebf3;
+            border-radius: 10px;
+            .main_score{
+              padding: 16px 0;
+              text-align: center;
+              border-bottom: 1px solid #e4ebf3;
+              p{
+                margin: 0;
+              }
+              .score{
+                font-size: 33px;
+                font-weight: bold;
+                span{
+                  font-size: 18px;
+                  font-weight: normal;
+                }
+              }
+              .score_text{
+                color: #888d93;
+                font-size: 15px;
+              }
+            }
+            .table_score{
+              display: flex;
+              flex-direction: row;
+              .table_score_item{
+                text-align: center;
+                padding: 8px 12px;
+                width: 20%;
+                border-right: 1px solid #e4ebf3;
+                p{
+                  margin: 0;
+                }
+                p:nth-child(1){
+                  color: #0b143e;
+                  font-size: 16px;
+                }
+                p:nth-child(2){
+                  color: #7d8288;
+                  font-size: 13px;
+                }
+              }
+              .table_score_item:last-child{
+                border: none;
               }
             }
           }

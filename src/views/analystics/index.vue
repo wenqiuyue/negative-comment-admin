@@ -4,10 +4,10 @@
       <div class="echar_title" v-if="reviewNumData">
         <div class="echar_title_l">
           Reviews-{{reviewNumData.total}}
-          <el-tooltip class="item" effect="dark" placement="top">
+          <!-- <el-tooltip class="item" effect="dark" placement="top">
             <div slot="content" style="width:210px;word-break:break-all">Monitor the number of reviews your business receives and your average rating over times</div>
             <i class="el-icon-info"></i>
-          </el-tooltip>
+          </el-tooltip> -->
         </div>
         <el-date-picker
           @change="datePickerChange(1)"
@@ -37,7 +37,7 @@
       <div class="stars_list">
         <el-steps align-center>
           <el-step :title="`${item.value}`" :description="`${item.name.split('-')[0]} STARS`" icon="el-icon-edit" v-for="(item,index) in totalRatingData" :key="index">
-            <svg-icon slot="icon" value="icon-xingxing" :size="2"></svg-icon>
+            <svg-icon slot="icon" value="icon-biaoqian" :size="2.2"></svg-icon>
           </el-step>
         </el-steps>
       </div>
@@ -146,14 +146,8 @@ export default {
 			  yAxis: [
           {
             type: 'value',
-            name: '#Reviews',
+            name: '#Complaints',
           },
-          {
-              type: 'value',
-              name: 'Rating',
-              min: 0,
-              max: 5,
-          }
         ],
 			  series: this.reviewNumData.series
 		  };

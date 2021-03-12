@@ -109,6 +109,13 @@
       "font_class": "shezhi",
       "unicode": "e601",
       "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "73904869",
+      "name": "标签",
+      "font_class": "biaoqian",
+      "unicode": "e610",
+      "unicode_decimal": 58896
     }
   ]
 }

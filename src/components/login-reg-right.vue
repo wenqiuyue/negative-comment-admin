@@ -3,12 +3,6 @@
     <div class="about">
       <a :href="site.url" target="_blank">{{site.siteName}}</a>
     </div>
-    <rate
-      class="c_rate"
-      :value="5"
-      :isDisabled="true"
-    >
-    </rate>
     <p class="text_about">AI powered platform aimed to cater to all businesses that have an online presence.</p>
     <p class="text_about_company">Trusted by the world's smartest companies</p>
     <p class="text_about_footer">By signing up you agree to receive email communication about our products and services.</p>
@@ -37,15 +31,8 @@ export default {
       text-decoration: none;
     }
   }
-  .c_rate{
-    margin-top: 120px;
-    /deep/.icon-pingfendengjiRating4{
-      font-size: 34px;
-      margin-right: 3px;
-    }
-  }
   .text_about{
-    margin-top: 54px;
+    margin-top: 168px;
     color: #FFFFFF;
     font-size: 20px;
     font-weight: 600;
@@ -70,9 +57,6 @@ export default {
 @media all and (max-width: 1024px) {
   .login-reg-right{
     padding: 50px 45px 33px 45px;
-    .c_rate{
-      margin-top: 100px;
-    }
   }
 }
 </style>
